@@ -1,4 +1,4 @@
-# CRUD con Laravel — Laboratorio #2
+# CRUD con Laravel — Laboratorio #3
 
 **Universidad Tecnológica de Panamá**  
 Facultad de Ingeniería de Sistemas Computacionales  
