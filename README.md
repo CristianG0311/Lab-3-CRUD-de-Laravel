@@ -1,4 +1,4 @@
-# CRUD con Laravel — Laboratorio #3
+# CRUD con Laravel — Laboratorio #2
 
 **Universidad Tecnológica de Panamá**  
 Facultad de Ingeniería de Sistemas Computacionales  
@@ -57,8 +57,8 @@ Sistema CRUD (Create, Read, Update, Delete) de gestión de productos desarrollad
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/TuUsuario/crudCR.git
-cd crudCR
+git clone https://github.com/CristianG0311/Lab-3-CRUD-de-Laravel.git
+cd Lab-3-CRUD-de-Laravel
 ```
 
 ### 2. Instalar dependencias PHP
@@ -196,6 +196,16 @@ npm run dev
 
 ---
 
+## Pruebas del Sistema
+
+### Pantalla Principal — Listado de Productos
+
+La pantalla principal muestra la tabla de productos con las columnas No, Description, Price y Stock. Cada fila cuenta con los botones Show, Edit y Delete para gestionar cada producto. En la parte superior derecha se encuentra el botón Create New para agregar un nuevo producto. El mensaje "Product created successfully." confirma que la operacion de creacion fue exitosa.
+
+![image alt]()
+
+---
+
 ## Backup de Base de Datos
 
 El archivo de respaldo de la base de datos se encuentra en la carpeta `/database/` del repositorio con el nombre `CrudCR.sql`.
@@ -205,3 +215,9 @@ Para restaurarlo:
 2. Crea una base de datos llamada `CrudCR`
 3. Selecciónala y ve a la pestaña Importar
 4. Selecciona el archivo `CrudCR.sql` y haz clic en Importar
+
+---
+
+## Licencia
+
+Proyecto académico — Universidad Tecnológica de Panamá 2025
