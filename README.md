@@ -1,58 +1,207 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CRUD con Laravel — Laboratorio #3
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Universidad Tecnológica de Panamá**  
+Facultad de Ingeniería de Sistemas Computacionales  
+Licenciatura en Ingeniería de Sistemas y Computación  
 
-## About Laravel
+| Campo | Detalle |
+|-------|---------|
+| Estudiante | Cristian González |
+| Cédula | 8-1020-424 |
+| Asignatura | Desarrollo de Software VII |
+| Grupo | 1GS132 |
+| Facilitador | Profesora Irina Fong |
+| Semestre | Primer Semestre |
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Descripción
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sistema CRUD (Create, Read, Update, Delete) de gestión de productos desarrollado con el framework **Laravel**, utilizando el paquete `ibex/crud-generator` para la generación automática de controladores, vistas, modelos y rutas. El diseño del frontend fue construido con **Bootstrap** y compilado con **Vite**.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Herramientas Utilizadas
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Herramienta | Descripción |
+|-------------|-------------|
+| Laravel v13.7.0 | Framework PHP principal |
+| PHP 8.x | Lenguaje de programación |
+| WAMP Server | Servidor local (Apache + MySQL + PHP) |
+| MySQL / phpMyAdmin | Motor de base de datos |
+| Composer | Gestor de dependencias PHP |
+| Node.js / npm | Gestor de paquetes JavaScript |
+| Vite v8.0.10 | Compilador de assets frontend |
+| Bootstrap | Framework CSS |
+| ibex/crud-generator | Generador automático de CRUD |
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## Estructura de la Base de Datos
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+**Base de datos:** `CrudCR`  
+**Tabla:** `products`
 
+| Columna | Tipo | Descripción |
+|---------|------|-------------|
+| id | BIGINT (PK) | Identificador único |
+| description | VARCHAR(191) | Descripción del producto |
+| price | DOUBLE(8,2) | Precio del producto |
+| stock | INT | Cantidad en inventario |
+| created_at | TIMESTAMP | Fecha de creación |
+| updated_at | TIMESTAMP | Fecha de actualización |
+
+---
+
+## Instalación y Configuración
+
+### 1. Clonar el repositorio
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/TuUsuario/crudCR.git
+cd crudCR
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Instalar dependencias PHP
+```bash
+composer install
+```
 
-## Contributing
+### 3. Instalar dependencias de Node
+```bash
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Configurar el archivo de entorno
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Code of Conduct
+Edita el archivo `.env` con tus credenciales de base de datos:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=CrudCR
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 5. Configurar longitud de cadena (AppServiceProvider)
+En `app/Providers/AppServiceProvider.php`:
+```php
+use Illuminate\Support\Facades\Schema;
 
-## Security Vulnerabilities
+public function boot(): void
+{
+    Schema::defaultStringLength(191);
+}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 6. Crear la base de datos y correr migraciones
+```bash
+php artisan migrate
+```
 
-## License
+### 7. Compilar el frontend
+```bash
+npm run dev
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 8. Acceder al sistema
+```
+http://localhost/crudCR/public/products
+```
+
+---
+
+## Estructura del Proyecto (MVC)
+
+```
+crudCR/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       └── ProductController.php   <- Lógica CRUD
+│   ├── Models/
+│   │   └── Product.php                 <- Modelo Eloquent
+│   └── Providers/
+│       └── AppServiceProvider.php      <- Config. Schema
+├── database/
+│   └── migrations/
+│       └── ..._create_products_table.php
+├── resources/
+│   └── views/
+│       └── products/
+│           ├── index.blade.php         <- Listado
+│           ├── create.blade.php        <- Formulario crear
+│           ├── edit.blade.php          <- Formulario editar
+│           └── show.blade.php          <- Detalle
+├── routes/
+│   └── web.php                         <- Rutas del sistema
+└── .env                                <- Variables de entorno
+```
+
+---
+
+## Rutas del Sistema (REST)
+
+| Método | URL | Acción | Descripción |
+|--------|-----|--------|-------------|
+| GET | `/products` | index | Listar productos |
+| GET | `/products/create` | create | Formulario de creación |
+| POST | `/products` | store | Guardar producto |
+| GET | `/products/{id}` | show | Ver detalle |
+| GET | `/products/{id}/edit` | edit | Formulario de edición |
+| PUT/PATCH | `/products/{id}` | update | Actualizar producto |
+| DELETE | `/products/{id}` | destroy | Eliminar producto |
+
+Ver todas las rutas con:
+```bash
+php artisan route:list
+```
+
+---
+
+## Comandos Utilizados
+
+```bash
+# Crear proyecto
+laravel new crudCR
+
+# Crear modelo y migración
+php artisan make:model Product -m
+
+# Correr migraciones
+php artisan migrate
+
+# Instalar generador de CRUD
+composer require ibex/crud-generator --dev
+
+# Publicar archivos del paquete
+php artisan vendor:publish --tag=crud
+
+# Generar CRUD
+php artisan make:crud products
+
+# Actualizar autoload
+composer dump-autoload
+
+# Instalar frontend
+composer require laravel/ui
+php artisan ui bootstrap
+npm install
+npm run dev
+```
+
+---
+
+## Backup de Base de Datos
+
+El archivo de respaldo de la base de datos se encuentra en la carpeta `/database/` del repositorio con el nombre `CrudCR.sql`.
+
+Para restaurarlo:
+1. Abre phpMyAdmin en `http://localhost/phpmyadmin`
+2. Crea una base de datos llamada `CrudCR`
+3. Selecciónala y ve a la pestaña Importar
+4. Selecciona el archivo `CrudCR.sql` y haz clic en Importar
