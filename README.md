@@ -202,22 +202,6 @@ npm run dev
 
 La pantalla principal muestra la tabla de productos con las columnas No, Description, Price y Stock. Cada fila cuenta con los botones Show, Edit y Delete para gestionar cada producto. En la parte superior derecha se encuentra el botón Create New para agregar un nuevo producto. El mensaje "Product created successfully." confirma que la operacion de creacion fue exitosa.
 
-![image alt]()
+![image alt](https://github.com/CristianG0311/Lab-3-CRUD-de-Laravel/blob/e3ae09693f0a4012262254abf673ac31ce8824e1/Captura%20de%20pantalla%202026-04-28%20175910.png)
 
 ---
-
-## Backup de Base de Datos
-
-El archivo de respaldo de la base de datos se encuentra en la carpeta `/database/` del repositorio con el nombre `CrudCR.sql`.
-
-Para restaurarlo:
-1. Abre phpMyAdmin en `http://localhost/phpmyadmin`
-2. Crea una base de datos llamada `CrudCR`
-3. Selecciónala y ve a la pestaña Importar
-4. Selecciona el archivo `CrudCR.sql` y haz clic en Importar
-
----
-
-## Licencia
-
-Proyecto académico — Universidad Tecnológica de Panamá 2025
